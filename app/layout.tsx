@@ -3,6 +3,7 @@ import { Inter, Nunito } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/navbar/navbar'
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
