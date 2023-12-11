@@ -4,7 +4,7 @@ import Logo from "./Logo"
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 
-const navbar = () => {
+const Navbar = () => {
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm">
       <div
@@ -25,4 +25,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;
