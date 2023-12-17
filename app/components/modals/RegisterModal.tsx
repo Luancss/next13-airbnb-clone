@@ -12,7 +12,7 @@ import {
   useForm
 } from "react-hook-form";
 
-
+import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 import Modal from "./Modal";
@@ -22,6 +22,7 @@ import Button from "../Button";
 
 const RegisterModal= () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const { 
@@ -45,6 +46,7 @@ const RegisterModal= () => {
     .then(() => {
       toast.success('Registered!');
       registerModal.onClose();
+      loginModal.onOpen();
     })
     .catch((error) => {
       toast.error(error);
@@ -56,7 +58,8 @@ const RegisterModal= () => {
 
   const onToggle = useCallback(() => {
     registerModal.onClose();
-  }, [registerModal])
+    loginModal.onOpen();
+  }, [registerModal, loginModal])
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -133,7 +136,7 @@ const RegisterModal= () => {
     <Modal
       disabled={isLoading}
       isOpen={registerModal.isOpen}
-      title="Login"
+      title="Register"
       actionLabel="Continue"
       onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
