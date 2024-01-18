@@ -90,7 +90,15 @@ const RentModal = () => {
     axios.post('/api/listings', data)
     .then(() => {
       toast.success('Listing Created!');
-      router.refresh()
+      router.refresh();
+      reset();
+      setStep(STEPS.CATEGORY);
+      rentModal.onClose();
+    })
+    .catch(() => {
+      toast.error('Something went wrong')
+    }).finally(() => {
+      setIsLoading(true)
     })
   }
 
@@ -246,7 +254,7 @@ const RentModal = () => {
     <Modal
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={onNext}
+      onSubmit={handleSubmit(onSubmit)}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       actionLabel="Submit"
