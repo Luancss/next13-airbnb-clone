@@ -5,6 +5,7 @@ import { Listing, Reservation } from "@prisma/client";
 import { SafeUser } from "@/app/types";
 import useCountries from "@/app/hooks/useContries";
 import { useCallback, useMemo } from "react";
+import { format } from "date-fns";
 
 interface ListinCardProps {
   data: Listing;
@@ -55,7 +56,9 @@ const ListingCard: React.FC<ListinCardProps> = ({
 
       const start = new Date(reservation.startDate);
       const end = new Date(reservation.endDate);
-    }, [])
+
+      return `${format(start, 'PP')} - ${format(end, 'PP')}`
+    }, [reservation])
 
   return <div>Listing Card</div>;
 };
