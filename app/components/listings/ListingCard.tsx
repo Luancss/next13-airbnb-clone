@@ -8,7 +8,7 @@ import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
 import Image from "next/image";
 
-interface ListinCardProps {
+interface ListingCardProps {
   data: Listing;
   reservation?: Reservation;
   onAction?: (id: string) => void;
@@ -17,7 +17,7 @@ interface ListinCardProps {
   actionId?: string;
   currentUser?: SafeUser | null;
 }
-const ListingCard: React.FC<ListinCardProps> = ({
+const ListingCard: React.FC<ListingCardProps> = ({
   data,
   reservation,
   onAction,
@@ -41,7 +41,7 @@ const ListingCard: React.FC<ListinCardProps> = ({
 
       onAction?.(actionId);
     },
-    [onAction, actionId, disabled]
+    [disabled, onAction, actionId]
   );
 
   const price = useMemo(() => {
@@ -66,15 +66,29 @@ const ListingCard: React.FC<ListinCardProps> = ({
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
-      className="cal span-1 cursor-pointer group"
+      className="col-span-1 cursor-pointer group"
     >
       <div className="flex flex-col gap-2 w-full">
-        <div className="aspec-square w-full relative overflow-hidden rounded-xl">
+        <div
+          className="
+            aspect-square 
+            w-full 
+            relative 
+            overflow-hidden 
+            rounded-xl
+          "
+        >
           <Image
             fill
-            alt="Listing"
+            className="
+              object-cover 
+              h-full 
+              w-full 
+              group-hover:scale-110 
+              transition
+            "
             src={data.imageSrc}
-            className="object-cover h-full w-full group-hover:scale-110 transition"
+            alt="Listing"
           />
         </div>
       </div>
