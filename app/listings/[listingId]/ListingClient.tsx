@@ -8,9 +8,9 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import { SafeListing, SafeUser } from "@/app/types";
 import { Reservation } from "@prisma/client";
 import axios from "axios";
-import { eachDayOfInterval } from "date-fns";
+import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
 const initialDateRange = {
@@ -73,6 +73,20 @@ export const ListingClient: React.FC<ListingClientProps> = ({
         setIsLoading(false);
       });
   }, [dateRange, totalPrice, listing?.id, router, currentUser, loginModal]);
+
+  useEffect(() => {
+    if (dateRange.startDate && dateRange.endDate) {
+      const dayCount = differenceInCalendarDays(
+        dateRange.endDate,
+        dateRange.startDate
+      );
+      if (dayCount && listing.price) {
+        setTotalPrice(dayCount * listing.price);
+      } else {
+        setTotalPrice(listing.price);
+      }
+    }
+  }, [])
 
   const category = useMemo(() => {
     return categories.find((item) => item.label === listing.category);
