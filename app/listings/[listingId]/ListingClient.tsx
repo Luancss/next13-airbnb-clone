@@ -2,6 +2,7 @@
 
 import Container from "@/app/components/Container";
 import ListingHead from "@/app/components/listings/ListingHead";
+import ListingReservation from "@/app/components/listings/ListingReservation";
 import ListingsInfo from "@/app/components/listings/ListingsInfo";
 import { categories } from "@/app/components/navbar/Categories";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -86,7 +87,7 @@ export const ListingClient: React.FC<ListingClientProps> = ({
         setTotalPrice(listing.price);
       }
     }
-  }, [])
+  }, [dateRange, listing.price]);
 
   const category = useMemo(() => {
     return categories.find((item) => item.label === listing.category);
@@ -112,6 +113,18 @@ export const ListingClient: React.FC<ListingClientProps> = ({
               bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
             />
+            <div className="order-first mb-10 md:order-last md:col-span-3">
+              <ListingReservation
+                price={listing.price}
+                totalPrice={totalPrice}
+                onChangeDate={(value) => setDateRange(value)}
+                dateRange={dateRange}
+                onSubmit={onCreateReservation}
+                disabled={isLoading}
+                disabledDates={disabledDates}
+              />
+
+            </div>
           </div>
         </div>
       </div>
