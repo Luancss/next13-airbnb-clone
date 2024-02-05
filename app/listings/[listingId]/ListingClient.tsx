@@ -68,9 +68,9 @@ export const ListingClient: React.FC<ListingClientProps> = ({
       .then(() => {
         toast.success("Listing reserved");
         setDateRange(initialDateRange);
-        router.refresh();
+        router.push("/trips");
       })
-      .catch(() => [toast.error("Something went wrong")])
+      .catch(() => toast.error("Something went wrong"))
       .finally(() => {
         setIsLoading(false);
       });
