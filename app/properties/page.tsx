@@ -31,9 +31,9 @@ const PropertiesPage = async () => {
 
   return (
     <ClientOnly>
-      <PropertiesClient 
-        listings={reservations}
-       currentUser={currentUser} />
+      <PropertiesClient
+        listings={listings}
+        currentUser={currentUser} />
     </ClientOnly>
   );
 };
