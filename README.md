@@ -49,7 +49,7 @@ git clone https://github.com/Luancss/next13-airbnb-clone
 ### Install packages
 
 ```shell
-npm i
+npm install
 ```
 
 ### Setup .env file
