@@ -124,7 +124,6 @@ export const ListingClient: React.FC<ListingClientProps> = ({
                 disabled={isLoading}
                 disabledDates={disabledDates}
               />
-
             </div>
           </div>
         </div>
