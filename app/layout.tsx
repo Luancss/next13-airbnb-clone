@@ -1,6 +1,6 @@
 import { Nunito } from 'next/font/google'
 
-import Navbar from '@/app/components/navbar/Navbar';
+
 import LoginModal from '@/app/components/modals/LoginModal';
 import RegisterModal from '@/app/components/modals/RegisterModal';
 import SearchModal from '@/app/components/modals/SearchModal';
@@ -11,6 +11,7 @@ import './globals.css'
 import ClientOnly from './components/ClientOnly';
 import getCurrentUser from './actions/getCurrentUser';
 import ToasterProviders from './providers/ToasterProviders';
+import Navbar from './components/navbar/Navbar';
 
 export const metadata = {
   title: 'Airbnb',
